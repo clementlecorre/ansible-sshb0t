@@ -1,0 +1,6 @@
+---
+- hosts: all
+  remote_user: root
+  become: true
+  roles:
+    - /Users/clement/git/ansible/sshb0t

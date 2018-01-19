@@ -1,0 +1,7 @@
+---
+# handlers file for sshb0t
+- name: Reload systemd daemon
+  command: systemctl daemon-reload
+
+- name: Restart sshb0t
+  command: systemctl restart sshb0t

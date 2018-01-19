@@ -1,0 +1,12 @@
+[Unit]
+Description=sshb0t
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-abort
+ExecStart={{ sshb0t_bin_path }} -interval {{ sshb0t_interval }} -keyfile {{ sshb0t_keyfile }} -gituri {{ sshb0t_gituri  }} {% for user in sshb0t_user %}
+-user {{ user }} {% endfor %}
+
+[Install]
+WantedBy=multi-user.target

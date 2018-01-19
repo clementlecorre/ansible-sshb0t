@@ -1,0 +1,49 @@
+---
+# tasks file for sshb0t
+- name: Create sshb0t systemd unit
+  template:
+    src: "{{ sshb0t_systemd_unit_template }}.j2"
+    dest: "{{ sshb0t_systemd_unit_dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload systemd daemon
+    - Restart sshb0t
+
+- name: Ensure install & config directory exists
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ sshb0t_install_dir }}"
+
+- name: Ensure sshb0t service is stopped before sshb0t update
+  service:
+    name: sshb0t
+    state: stopped
+    enabled: yes
+  when: sshb0t_update == "yes"
+
+- name: "Creates {{ sshb0t_keyfile_path }} directory"
+  file:
+    path: "{{ sshb0t_keyfile_path }}"
+    state: directory
+
+- name: Download sshb0t binary
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0755
+    force: "{{ sshb0t_update }}"
+  with_items:
+    - url: "{{ sshb0t_binary_url }}"
+      dest: "{{ sshb0t_bin_path }}"
+
+- name: Ensure sshb0t service is enabled and running
+  service:
+    name: sshb0t
+    state: restarted
+    enabled: yes
