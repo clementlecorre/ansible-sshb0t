@@ -1,6 +1,7 @@
 galaxy_info:
   author: Clément LE CORRE
   description: Role for deploy sshb0t by @
+  license: license (GPLv2, CC-BY, etc)
 
   min_ansible_version: 1.2
 
@@ -21,14 +22,14 @@ galaxy_info:
   platforms:
    - name: Ubuntu
      versions:
-     - 17.10
-     - 17.04
-     - 16.04
-     - 15.04
+     - xenial
+     - yakkety
+     - xenial
+     - wily
    - name: Debian
      versions:
-     - 9
-     - 8
+     - jessie
+     - stretch
   categories:
     - system
 
