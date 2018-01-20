@@ -1,6 +1,6 @@
 galaxy_info:
-  author: Clément LE CORRE
-  description: Role for deploy sshb0t by @
+  author: "Clement LE CORRE"
+  description: Role for deploy sshb0t by @clementlecorre
   license: license (GPLv2, CC-BY, etc)
 
   min_ansible_version: 1.2
